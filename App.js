@@ -10,6 +10,7 @@ const App = () => {
     var options = {
       config: {
         display: {
+          //show and hide payments method
           show: [{method: 'paylater'}],
           preferences: {show_default_blocks: true},
         },
@@ -29,6 +30,7 @@ const App = () => {
 
       theme: {color: 'blue'},
     };
+
     RazorpayCheckout.open(options)
       .then(data => {
         console.log('RESPONSE:', data);

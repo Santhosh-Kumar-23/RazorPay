@@ -10,82 +10,117 @@ Create a RazorPay Account [**Razorpay Account**](https://razorpay.com/?utm_sourc
 
 ![Alt text](image.png)
 
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+## Note
 
-# Getting Started
+For **Live Mode** - Complete KYC, Pan Detail, Phone number, Email, Bank Details and Application requirements like app/web link etc. will be asked.
+For **Test** Mode some of above mentioned can be ignored. We will be working on Test Mode.
 
-> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+### After registration Dashboard will appear:
 
-## Step 1: Start the Metro Server
+![Alt text](image-1.png)
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## STEP : 2
 
-To start Metro, run the following command from the _root_ of your React Native project:
+Generate API Keys in **Test Mode**. To go live with the integration and start accepting real payments, generate Live **Mode** API Keys and replace them in the integration.
 
-```bash
-# using npm
-npm start
+Go to dashboard > Account & Settings > Account and product settings > website and app settings > **API keys**
 
-# OR using Yarn
-yarn start
-```
+![Alt text](image-2.png)
 
-## Step 2: Start your Application
+Generate test key button
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+### After generate key page will appear:
 
-### For Android
+![Alt text](image-3.png)
+The secret key will be displayed only once and you won’t be able to find it again, so make a copy of it now. The Test API Key and the Secret key must be kept safe.
 
-```bash
-# using npm
-npm run android
+# How Payment Gateway Works
 
-# OR using Yarn
-yarn android
-```
+Refer : [Know about the](https://razorpay.com/docs/payments/payment-gateway/how-it-works/)
 
-### For iOS
+## Install Razorpay React Native SDK
 
 ```bash
 # using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+npm install react-native-razorpay --save
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+### On react-native application-side(App.js):
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+```bash
+import React from 'react';
+import {View, Text, Button} from 'react-native';
+import RazorpayCheckout from 'react-native-razorpay';
 
-## Step 3: Modifying your App
+const App = () => {
+  const amount = 100;
+  const currency = 'INR';
 
-Now that you have successfully run the app, let's modify it.
+  const handlePayment = () => {
+    var options = {
+      config: {
+        display: {
+          //show and hide payments method
+          show: [{method: 'paylater'}],
+          preferences: {show_default_blocks: true},
+        },
+      },
+      description: 'Im buying a Innova car',
+      image: 'https://i.imgur.com/3g7nmJC.jpg',
+      currency: currency,
+      key: 'rzp_test_XH7TB10urk1Tlg',
+      amount: amount * 100,
+      name: 'My app',
+      order_id: '', //Replace this with an order_id created using Orders API.
+      prefill: {
+        email: '99msanthosh@gmail.com',
+        contact: '9597654585',
+        name: 'Santhosh Kumar',
+      },
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+      theme: {color: 'blue'},
+    };
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+    RazorpayCheckout.open(options)
+      .then(data => {
+        console.log('RESPONSE:', data);
+        // handle success
+        alert(`Success: ${data.razorpay_payment_id}`);
+        console.log(`Payment Id::${data.razorpay_payment_id}`);
+      })
+      .catch(error => {
+        // handle failure
+        alert(`Error: ${error.code} | ${error.description}`);
+      });
+  };
 
-## Congratulations! :tada:
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <Text>Hello</Text>
+      <Button
+        title="Pay Now"
+        onPress={() => {
+          handlePayment();
+        }}
+      />
+    </View>
+  );
+};
+export default App;
+```
 
-You've successfully run and modified your React Native App. :partying_face:
+To learn more about Razorpat payment gateway, take a look at the following resources:
 
-### Now what?
+- [Razorpay official website](https://razorpay.com/docs/payments/payment-gateway/react-native-integration/standard/build-integration-android/)
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+## STEP : 3
 
-# Troubleshooting
+[Test Card Details](https://razorpay.com/docs/payments/payments/test-card-details/)
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Based on the success/failure response, further functionality can be implemented.
