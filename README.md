@@ -128,3 +128,7 @@ To learn more about Razorpat payment gateway, take a look at the following resou
 [Test Card Details](https://razorpay.com/docs/payments/payments/test-card-details/)
 
 Based on the success/failure response, further functionality can be implemented.
+
+### Note
+
+UPI and EMI option are unavailable in Ui(Package issue)
