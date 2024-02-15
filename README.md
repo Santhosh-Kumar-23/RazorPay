@@ -36,7 +36,7 @@ The secret key will be displayed only once and you won’t be able to find it ag
 
 # How Payment Gateway Works
 
-Refer : [Know about the](https://razorpay.com/docs/payments/payment-gateway/how-it-works/)
+Refer : [Know about payment flow](https://razorpay.com/docs/payments/payment-gateway/how-it-works/)
 
 ## Install Razorpay React Native SDK
 
