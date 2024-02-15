@@ -68,7 +68,7 @@ const App = () => {
       description: 'Im buying a Innova car',
       image: 'https://i.imgur.com/3g7nmJC.jpg',
       currency: currency,
-      key: 'rzp_test_XH7TB10urk1Tlg',
+      key: 'RAZORPAY_KEY_ID',
       amount: amount * 100,
       name: 'My app',
       order_id: '', //Replace this with an order_id created using Orders API.
@@ -114,6 +114,10 @@ const App = () => {
 };
 export default App;
 ```
+
+### Output:
+
+![Alt text](image-4.png)
 
 To learn more about Razorpat payment gateway, take a look at the following resources:
 

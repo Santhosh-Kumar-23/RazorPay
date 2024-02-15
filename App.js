@@ -18,7 +18,7 @@ const App = () => {
       description: 'Im buying a Innova car',
       image: 'https://i.imgur.com/3g7nmJC.jpg',
       currency: currency,
-      key: 'rzp_test_XH7TB10urk1Tlg',
+      key: 'RAZORPAY_KEY_ID',
       amount: amount * 100,
       name: 'My app',
       order_id: '', //Replace this with an order_id created using Orders API.
