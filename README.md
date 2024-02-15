@@ -129,6 +129,12 @@ To learn more about Razorpat payment gateway, take a look at the following resou
 
 Based on the success/failure response, further functionality can be implemented.
 
+# Go to DashbOard > Transaction section
+
+you can see your transactions
+
+![Alt text](image-5.png)
+
 ### Note
 
 UPI and EMI option are unavailable in Ui(Package issue)
