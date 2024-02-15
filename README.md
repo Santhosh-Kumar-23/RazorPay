@@ -8,6 +8,8 @@ Razor pay payment gateway integration with React native app
 
 Create a RazorPay Account [**Razorpay Account**](https://razorpay.com/?utm_source=google&utm_medium=cpc&utm_campaign=RPSME-RPPerf-GSearchBrand-Prospect-Dweb-Core&utm_adgroup=Core-Misspell-Exact&utm_content=RPSME-Brand-010223&utm_term=razorpay%20com&utm_gclid=Cj0KCQiA5rGuBhCnARIsAN11vgT_PPLWvGhiJNfCPfhjv-48ZegWOJ6KqUZLK6OYUofV2efjbQNk2HQaAu0pEALw_wcB&utm_campaignID=400139470&utm_adgroupID=143652420412&utm_adID=689518700857&utm_network=g&utm_device=c&utm_matchtype=e&utm_devicemodel=&utm_adposition=&utm_location=9298769&gad_source=1&gclid=Cj0KCQiA5rGuBhCnARIsAN11vgT_PPLWvGhiJNfCPfhjv-48ZegWOJ6KqUZLK6OYUofV2efjbQNk2HQaAu0pEALw_wcB)
 
+![Alt text](image.png)
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
