@@ -133,7 +133,7 @@ const CasfFreePayment = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text style={{fontSize: 15, marginBottom: 10}}>Test razor pay</Text>
+      <Text style={{fontSize: 15, marginBottom: 10}}>Cashfree pay</Text>
       <Button
         title="Pay Now"
         onPress={() => {
