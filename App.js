@@ -1,65 +1,29 @@
 import React from 'react';
 import {View, Text, Button} from 'react-native';
-import RazorpayCheckout from 'react-native-razorpay';
-
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import RazorPayPayment from './src/Razorpay/razorPay';
+import SelectPaymentOption from './src/selectPayment';
+import CasfFreePayment from './src/CashfreePay/cashfreePay';
 const App = () => {
-  const amount = 100;
-  const currency = 'INR';
-
-  const handlePayment = () => {
-    var options = {
-      config: {
-        display: {
-          //show and hide payments method
-          show: [{method: 'paylater'}],
-          preferences: {show_default_blocks: true},
-        },
-      },
-      description: 'Im buying a Innova car',
-      image: 'https://i.imgur.com/3g7nmJC.jpg',
-      currency: currency,
-      key: 'RAZORPAY_KEY_ID',
-      amount: amount * 100,
-      name: 'My app',
-      order_id: '', //Replace this with an order_id created using Orders API.
-      prefill: {
-        email: '99msanthosh@gmail.com',
-        contact: '9597654585',
-        name: 'Santhosh Kumar',
-      },
-
-      theme: {color: 'blue'},
-    };
-
-    RazorpayCheckout.open(options)
-      .then(data => {
-        console.log('RESPONSE:', data);
-        // handle success
-        alert(`Success: ${data.razorpay_payment_id}`);
-        console.log(`Payment Id::${data.razorpay_payment_id}`);
-      })
-      .catch(error => {
-        // handle failure
-        alert(`Error: ${error.code} | ${error.description}`);
-      });
-  };
+  const Stack = createNativeStackNavigator();
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <Text>Hello</Text>
-      <Button
-        title="Pay Now"
-        onPress={() => {
-          handlePayment();
-        }}
-      />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="SelectPaymentOption"
+        screenOptions={{
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontSize: 15},
+        }}>
+        <Stack.Screen
+          name="SelectPaymentOption"
+          component={SelectPaymentOption}
+        />
+        <Stack.Screen name="RazorPayPayment" component={RazorPayPayment} />
+        <Stack.Screen name="CasfFreePayment" component={CasfFreePayment} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 export default App;
